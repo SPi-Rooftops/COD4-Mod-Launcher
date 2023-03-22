@@ -150,7 +150,8 @@ namespace WindowsFormsApp1
                 appname = "iw3sp.exe";
             else if (spmp == "mp")
                 appname = "iw3mp.exe";
-            Process.Start(textBox1.Text + "\\" + appname);
+
+            Process.Start(textBox1.Text + "\\" + appname , " +set fs_game mods/" + listBox1.SelectedItem.ToString());
         }
 
         //###################### RADIO BUTTONS ############################
