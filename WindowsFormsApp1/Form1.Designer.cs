@@ -93,7 +93,6 @@ namespace WindowsFormsApp1
             this.groupBox1.Size = new System.Drawing.Size(255, 29);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // radioButton1
             // 
@@ -106,7 +105,7 @@ namespace WindowsFormsApp1
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Singleplayer";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.Click += new System.EventHandler(this.RadioButton1_Click);
             // 
             // radioButton2
             // 
@@ -117,7 +116,7 @@ namespace WindowsFormsApp1
             this.radioButton2.TabIndex = 7;
             this.radioButton2.Text = "Multiplayer";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.Click += new System.EventHandler(this.RadioButton2_Click);
             // 
             // listBox1
             // 

@@ -13,20 +13,13 @@ using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
-
-
-
-
     public partial class Form1 : Form
     {
 
         public string spmp;
-        public string selected_mod;
-
         public int setting_selected_mod;
         public string setting_radio_spmp;
 
-        public object local_storage;
 
         public Form1()
         {
@@ -37,11 +30,14 @@ namespace WindowsFormsApp1
         //################## LOAD #########################
         public void read_settings()
         {
-            if (File.Exists("settings.txt"))
+            if (File.Exists("settings.txt") )
             {
                 using (StreamReader sr = new StreamReader("settings.txt"))
                 {
+                    // saved folder path
                     textBox1.Text = sr.ReadLine();
+
+                    // sp mp checkbox
                     setting_radio_spmp = sr.ReadLine();
                     if (setting_radio_spmp == "sp")
                     {
@@ -52,11 +48,28 @@ namespace WindowsFormsApp1
                     {
                         radioButton2.Checked = true;
                         radioButton1.Checked = false;
-
                     }
+                    spmp = setting_radio_spmp;
+
 
                     PopulateListBox();
+                    // some errors
+                    /*
+                    // selected mod
+                    string line3_str = sr.ReadLine();
+                    if (line3_str != null)
+                    {
+                        int line3_int = int.Parse(line3_str);
+                        if (listBox1.SelectedIndex != null && line3_int != null && listBox1.Items.Count >= line3_int)
+                        {
+                            listBox1.SelectedIndex = line3_int;//setting_selected_mod;
+                            Console.WriteLine(line3_int);
+                        }
+                    }
+                    */
+
                 }
+
             }
         }
 
@@ -67,14 +80,9 @@ namespace WindowsFormsApp1
             using (StreamWriter sw = new StreamWriter("settings.txt"))
             {
                 sw.WriteLine(textBox1.Text);
-                if (radioButton1.Checked)
-                {
-                    sw.WriteLine("sp");
-                }
-                else if (radioButton2.Checked)
-                {
-                    sw.WriteLine("mp");
-                }
+                sw.WriteLine(spmp);
+                sw.WriteLine(setting_selected_mod);
+
             }
         }
 
@@ -94,7 +102,6 @@ namespace WindowsFormsApp1
         }
 
         //###################### SET PATH ####################
-
 
         private void button1_Click_1(object sender, EventArgs e)
         {  
@@ -123,7 +130,6 @@ namespace WindowsFormsApp1
                     string directoryName = new DirectoryInfo(directory).Name;
                     listBox1.Items.Add(directoryName);
                 }
-                //listBox1.SelectedIndex = 0; // errors
             }
             else
             {
@@ -131,16 +137,17 @@ namespace WindowsFormsApp1
             }
         }
 
-       
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selected_mod = listBox1.SelectedItem.ToString();
-            setting_selected_mod = listBox1.Items.IndexOf(selected_mod);
+            string selected_mod = listBox1.SelectedItem.ToString();
+            //setting_selected_mod = listBox1.Items.IndexOf(selected_mod);
+            setting_selected_mod = listBox1.SelectedIndex;
             Console.WriteLine(setting_selected_mod);
             save_settings();
         }
-        
 
+
+        
         //###################### START BUTTON ############################
 
         private void button_start_Click(object sender, EventArgs e)
@@ -151,89 +158,45 @@ namespace WindowsFormsApp1
             else if (spmp == "mp")
                 appname = "iw3mp.exe";
 
-            Process.Start(textBox1.Text + "\\" + appname , " +set fs_game mods/" + listBox1.SelectedItem.ToString());
+            ProcessStartInfo info = new ProcessStartInfo(appname);
+            info.FileName = appname;
+            info.Arguments = " +set fs_game mods/" + listBox1.SelectedItem.ToString();
+            info.WorkingDirectory = textBox1.Text;
+            Process.Start(info);
         }
 
         //###################### RADIO BUTTONS ############################
+        // WIP FIX the radio buttons may be buggy and not working
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton1_Click(object sender, EventArgs e)
         {
-            RadioButton selectedRadioButton = groupBox1.Controls.OfType<RadioButton>()
-                .FirstOrDefault(rb => rb.Checked);
-            if (selectedRadioButton != null)
-            {
-                spmp = "mp";
-                Console.WriteLine("MP");
-                //save_settings(); // errors
-            }
+            radioButton1.Checked = true;
+            radioButton2.Checked = false;
+            spmp = "sp";
+            save_settings();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton2_Click(object sender, EventArgs e)
         {
-            RadioButton selectedRadioButton = groupBox1.Controls.OfType<RadioButton>()
-                .FirstOrDefault(rb => rb.Checked);
-            if (selectedRadioButton != null)
-            {
-                spmp = "sp";
-                Console.WriteLine("SP");
-                //save_settings();// errors
-            }
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-            groupBox1.Controls.OfType<RadioButton>()
-            .ToList()
-            .ForEach(rb => rb.CheckedChanged += radioButton1_CheckedChanged);
+            radioButton1.Checked = false;
+            radioButton2.Checked = true;
+            spmp = "mp";
+            save_settings();
         }
 
         //###################### OTHERBUTTONS ############################
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // Directory
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // string path = textBox1.Text; // Get the directory path entered by the user
-        }
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
         private void label4_Click(object sender, EventArgs e)
         {
-
         }
-
-
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
