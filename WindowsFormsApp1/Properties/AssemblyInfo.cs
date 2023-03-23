@@ -10,8 +10,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SPi")]
 [assembly: AssemblyProduct("COD4 Mod Launcher")]
-[assembly: AssemblyCopyright("")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright @ 2023")]
+[assembly: AssemblyTrademark("SPi")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
