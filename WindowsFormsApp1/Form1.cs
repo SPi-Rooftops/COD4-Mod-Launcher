@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
         public string setting_radio_spmp;
 
 
+
         public Form1()
         {
             InitializeComponent();
@@ -30,54 +31,55 @@ namespace WindowsFormsApp1
         //################## LOAD #########################
         public void read_settings()
         {
-            if (File.Exists("settings.txt") )
-            {
-                using (StreamReader sr = new StreamReader("settings.txt"))
+
+                if (File.Exists("settings.txt"))
                 {
-                    // saved folder path
-                    textBox1.Text = sr.ReadLine();
-
-                    // sp mp checkbox
-                    setting_radio_spmp = sr.ReadLine();
-                    if (setting_radio_spmp == "sp")
+                    using (StreamReader sr = new StreamReader("settings.txt"))
                     {
-                        radioButton1.Checked = true;
-                        radioButton2.Checked = false;
-                    }
-                    else if (setting_radio_spmp == "mp")
-                    {
-                        radioButton2.Checked = true;
-                        radioButton1.Checked = false;
-                    }
-                    spmp = setting_radio_spmp;
 
+                        // saved folder path
+                        textBox1.Text = sr.ReadLine();
 
-                    PopulateListBox();
-                    // some errors
-                    /*
-                    // selected mod
-                    string line3_str = sr.ReadLine();
-                    if (line3_str != null)
-                    {
-                        int line3_int = int.Parse(line3_str);
-                        if (listBox1.SelectedIndex != null && line3_int != null && listBox1.Items.Count >= line3_int)
+                        // sp mp checkbox
+                        setting_radio_spmp = sr.ReadLine();
+                        if (setting_radio_spmp == "sp")
                         {
-                            listBox1.SelectedIndex = line3_int;//setting_selected_mod;
-                            Console.WriteLine(line3_int);
+                            radioButton1.Checked = true;
+                            radioButton2.Checked = false;
                         }
+                        else if (setting_radio_spmp == "mp")
+                        {
+                            radioButton2.Checked = true;
+                            radioButton1.Checked = false;
+                        }
+                        spmp = setting_radio_spmp;
+
+
+                        PopulateListBox();
+                        // some errors
+
+                        // selected mod
+                        string line3_str = sr.ReadLine();
+                        if (line3_str != null)
+                        {
+                            int line3_int = int.Parse(line3_str);
+                            if (listBox1.SelectedIndex != null && line3_int != null && listBox1.Items.Count >= line3_int)
+                            {
+                                listBox1.SelectedIndex = line3_int;//setting_selected_mod;
+                                Console.WriteLine(line3_int);
+                            }
+                        }
+
+
                     }
-                    */
-
                 }
-
-            }
         }
 
         //################## SAVE #########################
 
         public void save_settings()
         {
-            using (StreamWriter sw = new StreamWriter("settings.txt"))
+             using (StreamWriter sw = new StreamWriter("settings.txt"))
             {
                 sw.WriteLine(textBox1.Text);
                 sw.WriteLine(spmp);
@@ -97,7 +99,6 @@ namespace WindowsFormsApp1
             {
                 string folderPath = folderBrowser.SelectedPath;
                 textBox1.Text = folderPath;
-                save_settings();
             }
         }
 
@@ -109,6 +110,8 @@ namespace WindowsFormsApp1
             {
                 //MessageBox.Show("Directory path saved!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 PopulateListBox();
+                save_settings();
+
             }
             else
             {
@@ -140,13 +143,11 @@ namespace WindowsFormsApp1
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected_mod = listBox1.SelectedItem.ToString();
-            //setting_selected_mod = listBox1.Items.IndexOf(selected_mod);
             setting_selected_mod = listBox1.SelectedIndex;
             Console.WriteLine(setting_selected_mod);
-            save_settings();
+            //save_settings();
+
         }
-
-
         
         //###################### START BUTTON ############################
 
@@ -162,11 +163,11 @@ namespace WindowsFormsApp1
             info.FileName = appname;
             info.Arguments = " +set fs_game mods/" + listBox1.SelectedItem.ToString();
             info.WorkingDirectory = textBox1.Text;
+
             Process.Start(info);
         }
 
         //###################### RADIO BUTTONS ############################
-        // WIP FIX the radio buttons may be buggy and not working
 
         private void RadioButton1_Click(object sender, EventArgs e)
         {
@@ -198,5 +199,6 @@ namespace WindowsFormsApp1
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
+
     }
 }
