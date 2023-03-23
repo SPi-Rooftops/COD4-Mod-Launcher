@@ -48,6 +48,7 @@ namespace WindowsFormsApp1
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -65,11 +66,12 @@ namespace WindowsFormsApp1
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.RightToLeftLayout = true;
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(234, 408);
+            this.tabControl1.Size = new System.Drawing.Size(279, 408);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.button_start);
@@ -84,7 +86,6 @@ namespace WindowsFormsApp1
             this.tabPage1.Size = new System.Drawing.Size(226, 382);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Launcher";
-            this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // groupBox1
@@ -208,7 +209,9 @@ namespace WindowsFormsApp1
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.Transparent;
             this.tabPage2.Controls.Add(this.linkLabel4);
+            this.tabPage2.Controls.Add(this.linkLabel1);
             this.tabPage2.Controls.Add(this.linkLabel5);
             this.tabPage2.Controls.Add(this.linkLabel6);
             this.tabPage2.Controls.Add(this.label4);
@@ -216,16 +219,15 @@ namespace WindowsFormsApp1
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(273, 472);
+            this.tabPage2.Size = new System.Drawing.Size(271, 382);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "About";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(210)))));
+            this.linkLabel4.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(210)))));
             this.linkLabel4.Location = new System.Drawing.Point(6, 59);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(86, 17);
@@ -233,12 +235,13 @@ namespace WindowsFormsApp1
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "SPi\'s Moddb";
             this.linkLabel4.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // linkLabel5
             // 
             this.linkLabel5.AutoSize = true;
             this.linkLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel5.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(210)))));
+            this.linkLabel5.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(210)))));
             this.linkLabel5.Location = new System.Drawing.Point(6, 119);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(91, 17);
@@ -246,12 +249,13 @@ namespace WindowsFormsApp1
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "SPi\'s Discord";
             this.linkLabel5.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // linkLabel6
             // 
             this.linkLabel6.AutoSize = true;
             this.linkLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel6.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(210)))));
+            this.linkLabel6.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(210)))));
             this.linkLabel6.Location = new System.Drawing.Point(6, 89);
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.Size = new System.Drawing.Size(101, 17);
@@ -259,14 +263,15 @@ namespace WindowsFormsApp1
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "SPi\'s YouTube";
             this.linkLabel6.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 29);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(231, 17);
+            this.label4.Size = new System.Drawing.Size(215, 16);
             this.label4.TabIndex = 2;
             this.label4.Text = "Call of Duty 4 Mod Launcher by SPi";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -281,17 +286,31 @@ namespace WindowsFormsApp1
             this.label5.TabIndex = 3;
             this.label5.Text = "About";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(210)))));
+            this.linkLabel1.Location = new System.Drawing.Point(6, 149);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(91, 17);
+            this.linkLabel1.TabIndex = 5;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "App\'s GitHub";
+            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(190)))));
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(234, 411);
+            this.ClientSize = new System.Drawing.Size(279, 411);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Test App 1";
+            this.Text = "COD4 Mod Launcher";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -322,6 +341,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

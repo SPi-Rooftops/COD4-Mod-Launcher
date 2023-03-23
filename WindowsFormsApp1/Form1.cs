@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Diagnostics;
+//using MaterialSkin.Controls;
+//using MaterialSkin;
 
 namespace WindowsFormsApp1
 {
@@ -159,12 +161,16 @@ namespace WindowsFormsApp1
             else if (spmp == "mp")
                 appname = "iw3mp.exe";
 
-            ProcessStartInfo info = new ProcessStartInfo(appname);
-            info.FileName = appname;
-            info.Arguments = " +set fs_game mods/" + listBox1.SelectedItem.ToString();
-            info.WorkingDirectory = textBox1.Text;
-
-            Process.Start(info);
+            if (listBox1.SelectedItem == null )
+                MessageBox.Show("No mod selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                ProcessStartInfo info = new ProcessStartInfo(appname);
+                info.FileName = appname;
+                info.Arguments = " +set fs_game mods/" + listBox1.SelectedItem.ToString();
+                info.WorkingDirectory = textBox1.Text;
+                Process.Start(info);
+            }
         }
 
         //###################### RADIO BUTTONS ############################
@@ -185,6 +191,34 @@ namespace WindowsFormsApp1
             save_settings();
         }
 
+        //###################### LINKS ############################
+
+        // SPi's Moddb
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.moddb.com/members/spi-hamentsios10/mods");
+        }
+
+        // SPi's YouTube
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.youtube.com/channel/UCYpYA90Nr8C1qQnUrTlbCyA");
+
+        }
+
+        //SPi's Discord
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://discord.gg/Rs68sr4");
+
+        }
+        // App's GitHub
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/SPi-Rooftops/COD4-Mod-Launcher");
+
+        }
+
         //###################### OTHERBUTTONS ############################
 
         private void label1_Click(object sender, EventArgs e)
@@ -199,6 +233,7 @@ namespace WindowsFormsApp1
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
+
 
     }
 }
